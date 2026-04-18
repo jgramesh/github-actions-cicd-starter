@@ -1,0 +1,19 @@
+name: Day 02 - Node Setup
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  node-info:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - name: Install dependencies
+        run: npm install
+      - name: Show Node version
+        run: node --version
