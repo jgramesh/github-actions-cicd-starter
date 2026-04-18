@@ -1,0 +1,21 @@
+name: Day 09 - Staging Deploy with Verification
+
+on:
+  push:
+    branches: [develop]
+
+jobs:
+  deploy-and-verify:
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci || npm install
+      - run: npm run build
+      - run: ./scripts/deploy.sh staging
+      - name: Verify deployment artifacts
+        run: test -f deployments/staging/build-info.json
