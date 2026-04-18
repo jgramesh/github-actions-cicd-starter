@@ -1,0 +1,20 @@
+name: Day 11 - Manual Production Deployment
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy-production:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci || npm install
+      - run: npm run verify
+        env:
+          APP_ENV: production
+      - run: ./scripts/deploy.sh production
