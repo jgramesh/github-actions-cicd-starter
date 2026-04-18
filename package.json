@@ -1,0 +1,17 @@
+{
+  "name": "github-actions-cicd-starter",
+  "version": "1.0.0",
+  "description": "Hands-on GitHub Actions CI/CD starter project with 15-day learning plan",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "node --test",
+    "lint": "node scripts/lint.js",
+    "build": "node scripts/build.js",
+    "verify": "npm run lint && npm test && npm run build"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
