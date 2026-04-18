@@ -1,0 +1,19 @@
+name: Day 01 - Push Check
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+
+jobs:
+  hello-ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Show branch and commit
+        run: |
+          echo "Branch: $GITHUB_REF_NAME"
+          echo "Commit: $GITHUB_SHA"
